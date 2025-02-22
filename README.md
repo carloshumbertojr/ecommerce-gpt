@@ -36,21 +36,21 @@ OPEN_AI_API_KEY=
 BASE_ML_API_URL=
 CHAT_API_KEY=http://host.docker.internal:8080
 
-# model name
+# Nome do modelo
 # BASE_NAME_CHAT_MODEL="gpt-4o-mini"
 BASE_NAME_CHAT_MODEL="Qwen2.5-0.5B-Instruct-Q5_K_M.gguf"
 # BASE_NAME_CHAT_MODEL="Llama-3.2-1B-Instruct-Q5_K_M.gguf"
 # BASE_NAME_CHAT_MODEL="TinyLlama-1.1B-Chat-v1.0-Q4_K_M.gguf"
 
-# similarity for check repeated questions
+# Similaridade para as questões parecidas
 SIMILARITY_THRESHOLD=0.5
 
 # Postgres
-POSTGRES_SERVER=
-POSTGRES_PORT=
-POSTGRES_DB=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
+POSTGRES_SERVER=	# Nome do servidor postgres (não é usado, mas é necessário)
+POSTGRES_PORT=		# Porta do servidor postgres
+POSTGRES_DB=		# Nome do banco de dados a ser usado
+POSTGRES_USER=		# Nome do usuário
+POSTGRES_PASSWORD=	# Senha do usuário
 ```
 
 2. Configure os dados do banco de dados no arquivo `.env`.

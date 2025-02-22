@@ -1,0 +1,16 @@
+digraph question_processing {
+    rankdir=LR;
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Usuario [label="Usuário", shape=ellipse, fillcolor=lightyellow];
+    API [label="API (FastAPI)"];
+    DB [label="Banco de Dados (PostgreSQL via SQLAlchemy)", shape=cylinder, fillcolor=lightgray];
+    NLP [label="Processamento NLP (Langchain + OpenAI)"];
+
+    Usuario -> API [label="1. Requisição POST /ask com token JWT"];
+    API -> DB [label="2. Recuperação de contexto adicional (se necessário)"];
+    DB -> API [label="3. Dados de contexto"];
+    API -> NLP [label="4. Processamento da pergunta com Langchain e OpenAI"];
+    NLP -> API [label="5. Resposta gerada"];
+    API -> Usuario [label="6. Resposta em JSON"];
+}

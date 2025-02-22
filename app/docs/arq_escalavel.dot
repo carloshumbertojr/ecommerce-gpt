@@ -1,0 +1,30 @@
+digraph arquitetura_escalavel {
+    rankdir=TB;
+    
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Cliente [label="Clientes (Usuários)", shape=ellipse, fillcolor=lightyellow];
+    LoadBalancer [label="Balanceador de Carga (Nginx)"];
+    API1 [label="Servidor de Aplicação (FastAPI) - Instância 1"];
+    API2 [label="Servidor de Aplicação (FastAPI) - Instância 2"];
+    API3 [label="Servidor de Aplicação (FastAPI) - Instância 3"];
+    Cache [label="Cache (Redis)"];
+    DB [label="Banco de Dados (PostgreSQL)", shape=cylinder, fillcolor=lightgray];
+
+    Cliente -> LoadBalancer [label="Requisições HTTP"];
+    LoadBalancer -> API1 [label="Distribuição de Carga"];
+    LoadBalancer -> API2;
+    LoadBalancer -> API3;
+
+    API1 -> Cache [label="Busca de Respostas"];
+    API2 -> Cache;
+    API3 -> Cache;
+
+    Cache -> DB [label="Consultas SQL"];
+    
+    API1 -> DB [label="Gravação de Dados"];
+    API2 -> DB;
+    API3 -> DB;
+
+    DB -> Cache [label="Armazena Dados\nFrequentemente\n Acessados"];
+}

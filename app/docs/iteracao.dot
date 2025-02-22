@@ -1,0 +1,64 @@
+digraph api_interaction {
+    rankdir=LR;
+    nodesep=3
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Cliente [label="Cliente (Usuário)", shape=ellipse, fillcolor=lightyellow];
+    API [label="API (FastAPI)"];
+    DB [label="Banco de Dados (PostgreSQL)", shape=cylinder, fillcolor=lightgray];
+    NLP [label="Modelo de NLP (LLM)"];
+    
+    Cliente -> API [label="1. Envia requisição HTTP (GET/POST)", labeldistance=1.5, labelangle=20];
+    API -> DB [label="2. Consulta/Armazena dados", labeldistance=1.5, labelangle=-30];
+    DB -> API [label="3. Retorna dados consultados", labeldistance=1.5, labelangle=30];
+    API -> NLP [label="4. Envia pergunta para análise NLP", labeldistance=1.8, labelangle=-20];
+    NLP -> API [label="5. Retorna resposta processada", labeldistance=1.8, labelangle=25];
+    API -> Cliente [label="6. Retorna resposta em JSON", labeldistance=1.5, labelangle=-15];
+}
+digraph api_interaction {
+    rankdir=LR;
+    
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Cliente [label="Cliente (Usuário)", shape=ellipse, fillcolor=lightyellow];
+    API [label="API (FastAPI)"];
+    DB [label="Banco de Dados (PostgreSQL)", shape=cylinder, fillcolor=lightgray];
+    NLP [label="Modelo de NLP (LLM)"];
+    
+    Cliente -> API [label="1. Envia requisição HTTP (GET/POST)", labeldistance=1.5, labelangle=20];
+    API -> DB [label="2. Consulta/Armazena dados", labeldistance=1.5, labelangle=-30];
+    DB -> API [label="3. Retorna dados consultados", labeldistance=1.5, labelangle=30];
+    API -> NLP [label="4. Envia pergunta para análise NLP", labeldistance=1.8, labelangle=-20];
+    NLP -> API [label="5. Retorna resposta processada", labeldistance=1.8, labelangle=25];
+    API -> Cliente [label="6. Retorna resposta em JSON", labeldistance=1.5, labelangle=-15];
+}
+
+// digraph G {
+//     // Definições gerais do grafo
+//     // layout=neato;
+//     rankdir=LR;
+//     nodesep=3.0;
+//     bgcolor="floralwhite"
+//     splines=true;
+//     node [shape=box, style=filled, fillcolor=lightblue, fontname="Helvetica,Arial,sans-serif"];
+//     edge [fontname="Helvetica,Arial,sans-serif"];
+
+//     // Definição dos nós com posições específicas
+//     Cliente [label="Usuário", shape=ellipse, fillcolor=lightyellow,                   pos="0,2!"];
+//     API [label="API\n(FastAPI)",                                                        pos="2,2!"];
+//     DB [label="Banco de Dados\n(PostgreSQL)", shape=cylinder, fillcolor=lightgray,    pos="4,3!"];
+//     NLP [label="Modelo de NLP\n(LLM)",                                                  pos="4,1!"];
+//     Decisao [label="Decisão do Usuário", shape=diamond, fillcolor=lightgreen,         pos="6,2!"];
+//     Fim [label="Fim", shape=ellipse, fillcolor=lightpink,                             pos="8,2!"];
+
+//     // Definição das arestas com labels e posições
+//     Cliente -> API [label="1. Envia consulta de pesquisa"];
+//     API -> DB [label="2. Consulta dados"];
+//     DB -> API [label="3. Retorna dados"];
+//     API -> NLP [label="4. Envia dados para análise"];
+//     NLP -> API [label="5. Retorna resposta processada"];
+//     API -> Cliente [label="6. Exibe resultados"];
+//     Cliente -> Decisao [label="7. Decide refinar ou encerrar"];
+//     Decisao -> Cliente [label="Refinar pesquisa", style=dashed];
+//     Decisao -> Fim [label="Encerrar", style=dotted];
+// }

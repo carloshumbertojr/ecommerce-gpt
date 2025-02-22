@@ -1,0 +1,46 @@
+digraph api_map {
+    node[shape=box, style=filled];
+
+    container[label="Container => Docker"]
+    
+    postgres
+    python
+
+    main
+    init_db
+    initial_data
+    fast_api_server
+    routes[label="routes"]
+    
+    api_v1[label="/api/v1"]
+
+    user[label="/user"];
+
+    login[label="/login"];
+
+    answer[label="/answer"]
+    
+    create
+    mercadoLivreAPI
+    chat
+    get_description
+    process_description
+    result
+
+    container -> postgres
+    container -> python
+
+    python -> main
+    
+    main -> init_db 
+    main -> initial_data
+    main -> fast_api_server
+    
+    fast_api_server -> routes
+    
+    routes -> api_v1
+    
+    api_v1 -> user
+    api_v1 -> login
+    api_v1 -> answer
+}

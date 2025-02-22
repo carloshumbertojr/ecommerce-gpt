@@ -1,0 +1,22 @@
+
+digraph nlp_process {
+    rankdir=LR;
+    nodesep=3
+    
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Usuario [label="Usuário/Agente", shape=ellipse, fillcolor=lightyellow];
+    Recebimento [label="1. Recebimento da Pergunta\nUsuário insere uma questão sobre\num produto"];
+    PreProcessamento [label="2. Pré-processamento\nConstrução do contexto do\nproduto, formatação da pergunta"];
+    AnaliseIA [label="3. Análise pelo Modelo de IA\nPergunta enviada ao modelo\ntreinado para identificação da\nmelhor resposta"];
+
+    // PosProcessamento [label="4. Pós-processamento\nVerificação da relevância e ajuste da resposta", fillcolor=crimson];
+
+    Resposta [label="Resposta enviada ao\nusuário/agente", shape=ellipse, fillcolor=limegreen];
+
+    Usuario -> Recebimento;
+    Recebimento -> PreProcessamento;
+    PreProcessamento -> AnaliseIA -> Resposta;
+    // AnaliseIA -> PosProcessamento;
+    // PosProcessamento -> Resposta;
+}

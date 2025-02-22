@@ -1,0 +1,50 @@
+[
+	{
+		"id": "1",
+		"id_ml": "13107161141",
+		"date_created": null,
+		"item_id": "MLB4516453116",
+		"seller_id": "139663273",
+		"status": "ANSWERED",
+		"text": "Pode aplicar com olhos abertos?",
+		"tags": "[]",
+		"deleted_from_listing": "0",
+		"hold": "0",
+		"answer": "{\"text\": \"nao\", \"status\": \"ACTIVE\", \"date_created\": \"2024-07-17T18:10:48.511-04:00\"}",
+		"from_id": null,
+		"created_at": "2025-02-09 21:44:50",
+		"updated_at": "2025-02-09 21:44:50"
+	},
+	{
+		"id": "2",
+		"id_ml": "13109590358",
+		"date_created": null,
+		"item_id": "MLB3931565564",
+		"seller_id": "139663273",
+		"status": "ANSWERED",
+		"text": "Composição?",
+		"tags": "[]",
+		"deleted_from_listing": "0",
+		"hold": "0",
+		"answer": "{\"text\": \"Ethyl Cyanoacrylate, PMMA, Ethoxyethyl 2-cyanoacrylate, PIGMENT, Carbon Black\", \"status\": \"ACTIVE\", \"date_created\": \"2024-07-22T14:45:43.834-04:00\"}",
+		"from_id": null,
+		"created_at": "2025-02-09 21:44:50",
+		"updated_at": "2025-02-09 21:44:50"
+	},
+	{
+		"id": "3",
+		"id_ml": "13107162361",
+		"date_created": null,
+		"item_id": "MLB4516453116",
+		"seller_id": "139663273",
+		"status": "ANSWERED",
+		"text": "Essa cola arde",
+		"tags": "[]",
+		"deleted_from_listing": "0",
+		"hold": "0",
+		"answer": "{\"text\": \"nao\", \"status\": \"ACTIVE\", \"date_created\": \"2024-07-22T14:46:01.893-04:00\"}",
+		"from_id": null,
+		"created_at": "2025-02-09 21:44:50",
+		"updated_at": "2025-02-09 21:44:50"
+	}
+]

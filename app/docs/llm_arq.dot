@@ -1,0 +1,37 @@
+digraph llm_arquitetura {
+    label="Arquitetura de LLMs"
+    rankdir=LR;
+    fontname="Helvetica,Arial,sans-serif"
+    node [fontname="Helvetica,Arial,sans-serif"]
+    edge [fontname="Helvetica,Arial,sans-serif"]
+
+    graph [
+        rankdir = "LR"
+    ];
+    node [
+        fontsize = "16"
+        shape = "ellipse"
+        width=3
+    ];
+
+    // Cliente externo
+    Client [shape=ellipse, label="Chamadas de API"];
+
+    // Cluster de LLMs
+    subgraph cluster_llms {
+        label="LLMs";
+
+        // Container LLaMA Local
+        subgraph cluster_llama_container {
+            label="Container - LLaMAEdge";
+            llama_model [shape=box, label="TinyLlama-1.1B-Chat-v1.0"];
+        }
+
+        // API OpenAI
+        openai_api [shape=box, label="API OpenAI (gpt-4o-mini)"];
+    }
+
+    // Fluxo de comunicação
+    Client -> llama_model [label="Requisições para LLaMA"];
+    Client -> openai_api [label="Requisições para OpenAI"];
+}

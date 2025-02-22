@@ -1,0 +1,210 @@
+// digraph arquitetura {
+//     label="Backend"
+//     // rankdir=LR;
+//     nodesep=2
+//     fontname="Helvetica,Arial,sans-serif"
+//     node [fontname="Helvetica,Arial,sans-serif"]
+//     edge [fontname="Helvetica,Arial,sans-serif"]
+//     ranksep=3
+//     graph [
+//         rankdir = "LR"
+//     ];
+//     node [
+//         fontsize = "16"
+//         shape = "ellipse"
+//         width=3
+//     ];
+
+//     // Cliente externo
+//     Client [shape=ellipse, label="Cliente"];
+
+//     // Cluster Docker
+//     subgraph cluster_docker {
+//         label="Docker";
+
+//         // Nginx Proxy
+//         nginx_proxy [shape=box, label="Nginx Proxy"];
+
+//         // Load Balancer
+//         load_balancer [shape=diamond, label="Load Balancer"];
+
+//         // Cache Redis
+//         redis_cache [shape=component, label="Redis Cache"];
+
+//         // Sistema de Mensageria
+//         message_queue [shape=parallelogram, label="RabbitMQ"];
+
+//         // API Gateway
+//         api_gateway [shape=hexagon, label="API Gateway"];
+
+//         // Serviço de Autenticação
+//         auth_service [shape=folder, label="Serviço de Autenticação"];
+
+//         // Monitoramento
+//         monitoring [shape=note, label="Monitoramento (Prometheus + Grafana)"];
+
+//         // Centralizador de Logs
+//         log_service [shape=note, label="Centralizador de Logs (ELK/Loki)"];
+
+//         // Container 1 - API Backend
+//         subgraph cluster_container_1 {
+//             label="Container 1";
+//             API [shape=box, label="FastAPI Backend"];
+//             Worker1 [shape=box, label="Worker de Processamento 1"];
+//             Worker2 [shape=box, label="Worker de Processamento 2"];
+//         }
+
+//         // Container 2 - Banco de Dados
+//         subgraph cluster_container_2 {
+//             label="Container 2";
+//             DB [shape=cylinder, label="PostgreSQL"];
+//             DB_replica [shape=cylinder, label="PostgreSQL Replica", style=dashed];
+//         }
+//     }
+
+//     // Fluxo de comunicação
+//     Client -> api_gateway [label="Requisições HTTP"];
+//     api_gateway -> nginx_proxy [label="Encaminhamento"];
+//     nginx_proxy -> load_balancer [label="Roteamento"];
+//     load_balancer -> API [label="Distribuição de Carga"];
+//     API -> redis_cache [label="Cache de Dados"];
+//     API -> DB [label="Consultas SQL"];
+//     redis_cache -> DB [label="Fallback para DB", style=dashed];
+
+//     // Integração com a Message Queue
+//     API -> message_queue [label="Publicação de Tarefas"];
+//     message_queue -> Worker1 [label="Entrega de Tarefas"];
+//     message_queue -> Worker2 [label="Entrega de Tarefas"];
+//     Worker1 -> DB [label="Armazenamento de Resultados"];
+//     // Worker2 -> DB [label="Armazenamento de Resultados"];
+
+//     // Autenticação
+//     api_gateway -> auth_service [label="Verificação de Autenticação"];
+
+//     // Monitoramento e Logs
+//     API -> monitoring [label="Métricas"];
+//     API -> log_service [label="Logs"];
+//     Worker1 -> monitoring [label="Métricas"];
+//     Worker1 -> log_service [label="Logs"];
+//     Worker2 -> monitoring [label="Métricas"];
+//     Worker2 -> log_service [label="Logs"];
+
+//     // Replica do Banco de Dados
+//     DB -> DB_replica [label="Replicação de Dados", style=dashed];
+// }
+
+digraph arquitetura_v1 {
+    label="Backend"
+    rankdir=LR;
+    nodesep=1
+    fontname="Helvetica,Arial,sans-serif"
+
+    node [fontname="Helvetica,Arial,sans-serif"]
+    edge [fontname="Helvetica,Arial,sans-serif"]
+    graph [
+        rankdir = "LR"
+    ];
+    node [
+        fontsize = "16"
+        shape = "ellipse"
+        width=3
+    ];
+    edge [
+    ];
+    Client [shape=ellipse, label="Cliente"];
+
+    subgraph cluster_docker {
+        label="Docker";
+        subgraph cluster_container_1 {
+            label="container_1";
+            API [shape=box, label="FastAPI Backend"];
+            Service_API [shape=ellipse, label="Seleção de serviço"];
+        }
+        subgraph cluster_container_2 {
+            label="container_2";
+            DB [shape=cylinder, label="PostgreSQL"];
+        }
+        // load_balancer
+        // redis_cache
+        // nginx_proxy
+    }
+    
+    Internet [shape=doublecircle, label="Internet",width=1 ];
+    
+    Client -> API [label="Requisições HTTP"];
+    API -> DB [label="Consultas SQL"];
+    // Cluster de LLMs
+    subgraph cluster_llms {
+        label="LLMs";
+
+        // Container LLaMA Local
+        subgraph cluster_llama_container {
+            label="Container - LLaMAEdge";
+            llama_model [shape=box, label="TinyLlama-1.1B-Chat-v1.0"];
+        }
+
+        // API OpenAI
+        openai_api [shape=box, label="API OpenAI (gpt-4o-mini)"];
+    }
+
+    // Fluxo de comunicação
+    Service_API -> Internet [label="Requisições Externas"];
+    Internet -> openai_api [label="Requisições para OpenAI"];
+    Service_API -> llama_model [label="Requisições para LLaMA", labeldistance="0"];
+    // Service_API -> llama_model [label="Requisições para LLaMA\nhttp://localhost:8080/v1/chat/completions"];
+
+}
+
+// digraph arquitetura_v2 {
+//     label="Backend"
+//     rankdir=LR;
+//     fontname="Helvetica,Arial,sans-serif"
+//     node [fontname="Helvetica,Arial,sans-serif"]
+//     edge [fontname="Helvetica,Arial,sans-serif"]
+
+//     graph [
+//         rankdir = "LR"
+//     ];
+//     node [
+//         fontsize = "16"
+//         shape = "ellipse"
+//         width=3
+//     ];
+
+//     // Cliente externo
+//     Client [shape=ellipse, label="Cliente"];
+
+//     // Cluster Docker
+//     subgraph cluster_docker {
+//         label="Docker";
+
+//         // Nginx Proxy
+//         nginx_proxy [shape=box, label="Nginx Proxy"];
+
+//         // Load Balancer
+//         load_balancer [shape=diamond, label="Load Balancer"];
+
+//         // Cache Redis
+//         redis_cache [shape=component, label="Redis Cache"];
+
+//         // Container 1 - API Backend
+//         subgraph cluster_container_1 {
+//             label="Container 1";
+//             API [shape=box, label="FastAPI Backend"];
+//         }
+
+//         // Container 2 - Banco de Dados
+//         subgraph cluster_container_2 {
+//             label="Container 2";
+//             DB [shape=cylinder, label="PostgreSQL"];
+//         }
+//     }
+
+//     // Fluxo de comunicação
+//     Client -> nginx_proxy [label="Requisições HTTP"];
+//     nginx_proxy -> load_balancer [label="Roteamento"];
+//     load_balancer -> API [label="Distribuição de Carga"];
+//     API -> redis_cache [label="Cache de Dados"];
+//     API -> DB [label="Consultas SQL"];
+//     redis_cache -> DB [label="Fallback para DB", style=dashed];
+// }

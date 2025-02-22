@@ -1,0 +1,42 @@
+// digraph ERD {
+//     node [shape=record];
+//     Users [label="{Usuários|id: PK|nome|email|hashed_password|is_active|full_name}"];
+//     // Products [label="{Produtos|id: PK|nome|descrição}"];
+//     // Questions [label="{Perguntas|id: PK|conteúdo|produto_id: FK}"];
+//     Answers [label="{Respostas|id: PK|user_id: FK|title|option_type|ml_product_id|endpoint|description}"];
+
+//     Users -> Answers [label="1:N"];
+//     // Products -> Questions [label="1:N"];
+//     // Questions -> Answers [label="1:N"];
+// }
+
+
+digraph g {
+    fontname="Helvetica,Arial,sans-serif"
+    node [fontname="Helvetica,Arial,sans-serif"]
+    edge [fontname="Helvetica,Arial,sans-serif"]
+    graph [
+        rankdir = "LR"
+    ];
+    node [
+        fontsize = "16"
+        shape = "ellipse"
+        width=3
+    ];
+    edge [
+    ];
+
+    // "Users" [
+    //     label = "Usuários|id: PK|nome|email|hashed_password|is_active|full_name"
+    //     shape = "record"
+    // ];
+    "Answers" [
+        label = "Respostas|id: PK|title|option_type|ml_product_id|endpoint|description"
+        shape = "record"
+    ];
+ 
+    // "Users":f0 -> "Answers":f0 [
+    //     id = 0
+    // ];
+
+}

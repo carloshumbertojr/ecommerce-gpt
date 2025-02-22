@@ -1,0 +1,13 @@
+digraph jwt_generation {
+    rankdir=LR;
+    node [shape=box, style=filled, fillcolor=lightblue];
+
+    Usuario [label="Usuário", shape=ellipse, fillcolor=lightyellow];
+    API [label="API (FastAPI)"];
+    DB [label="Banco de Dados (PostgreSQL via SQLAlchemy)", shape=cylinder, fillcolor=lightgray];
+
+    Usuario -> API [label="1. Requisição POST /register ou /login"];
+    API -> DB [label="2. Verificação/Cadastro de credenciais"];
+    DB -> API [label="3. Resultado da operação"];
+    API -> Usuario [label="4. Retorno do token JWT (em caso de login)"];
+}
